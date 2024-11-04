@@ -86,7 +86,52 @@
 
 |Offset|Register|Width (In bits)|Access|Reset value|
 |-|-|-|-|-|
+|12Ch|PCC PORTC Register (PCC_PORTC)|32|RW|8000_000h|
 |130h|PCC PORTD Register (PCC_PORTD)|32|RW|8000_000h|
+
+### 29.6.24 PCC PORTC Register (PCC_PORTC)
+
+#### 29.6.24.1 Offset
+
+|Register|Offset|
+|-|-|
+|PCC_PORTC|12Ch|
+
+#### 29.6.25.2 Function
+
+- This register is for the PORTC module.
+
+#### 29.6.25.3 Diagram
+
+![figure-29-2](images/figure-29-2.png)
+
+#### 29.6.25.4 Fields
+
+##### 31 PR
+
+- Present
+
+- This bit shows whether the peripheral is present on this device.
+
+- 0b - Peripheral is not present.
+
+- 1b - Peripheral is present.
+
+##### 30 CGC
+
+- Clock Gate Control
+
+- This read/write bit enables the interface clock for the peripheral, allowing access to the module's registers.
+
+- It also controls whether the clock selection and divider options can be modified.
+
+- 0b - Clock disabled.
+
+    - The current clock selection and divider options are not locked and can be modified.
+
+- 1b - Clock enabled.
+
+    - The current clock selection and divider options are locked and cannot be modified.
 
 ### 29.6.25 PCC PORTD Register (PCC_PORTD)
 

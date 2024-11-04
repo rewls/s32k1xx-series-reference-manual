@@ -205,5 +205,3 @@
     - The pin will be high-Z if the port input is disabled in GPIOx_PIDR register.
 
 - 1b - Pin is configured as general-purpose output, for the GPIO function.
-
-

@@ -218,6 +218,7 @@ implemented on a specific device.
 |Address offset (hex)|Register name|Width (in bits)|Access|Reset Value|Section|
 |-|-|-|-|-|-|
 |0|Pin Control Register n (PORT_PCR0)|32|R_W|See section|12.5.1|
+|30|Pin Control Register n (PORT_PCR0)|32|R_W|See section|12.5.1|
 
 ### 12.5.1 Pin Control Register n (PORT_PCRn)
 
