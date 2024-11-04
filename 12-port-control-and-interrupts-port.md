@@ -232,7 +232,7 @@ implemented on a specific device.
 >
 > - Unbonded pins not available in a package are disabled by default to prevent them from consuming power.
 
-- Adress: 0h base + 0h offset + (4d * i), where i = 0d to 31d
+- Address: 0h base + 0h offset + (4d * i), where i = 0d to 31d
 
 ![figure-12-1](images/figure-12-1.png)
 

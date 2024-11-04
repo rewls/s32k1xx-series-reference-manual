@@ -26,13 +26,13 @@
 
 > ##### Table 13-1. GPIO ports memory map
 >
-|Start address|Port|
-|-|-|
-|Base + 0h|Port A|
-|Base + 40h|Port B|
-|Base + 80h|Port C|
-|Base + C0h|Port D|
-|Base + 100h|Port E|
+> |Start address|Port|
+> |-|-|
+> |Base + 0h|Port A|
+> |Base + 40h|Port B|
+> |Base + 80h|Port C|
+> |Base + C0h|Port D|
+> |Base + 100h|Port E|
 
 > ##### Note
 >
@@ -174,7 +174,171 @@
 
 |Offset|Register|Width (in bits)|Access|Reset value|
 |-|-|-|-|-|
+|0h|Port Data Output Register (PDOR)|32|RW|0000_0000h|
+|4h|Port Set Output Register (PSOR)|32|WORZ|0000_000h|
+|8h|Port Clear Output Register (PCOR)|32|WORZ|0000_000h|
+|Ch|Port Toggle Output Register (PTOR)|32|WORZ|0000_000h|
+|10h|Port Data Input Register (PDIR)|32|RO|0000_0000h|
 |14h|Port Data Direction Register (PDDR)|32|RW|0000_0000h|
+|18h|Port Input Disable Register (PIDR)|32|RW|0000_0000h|
+
+#### 13.3.1.2 Port Data Output Register (PDOR)
+
+##### 13.3.1.2.1 Offset
+
+|Register|Offset|
+|-|-|
+|PDOR|0h|
+
+##### 13.3.1.2.2 Function
+
+- This register configures the logic levels that are driven on each general-purpose output pin.
+
+> ##### NOTE
+>
+> - Do not modify pin configuration registers associated with pins not available in your selected package.
+>
+> - All unbonded pins not available in your package will default to DISABLE state for lowest power consumption.
+
+##### 13.3.1.2.3 Diagram
+
+![figure-13-1](images/figure-13-1.png)
+
+##### 13.3.1.2.4 Fields
+
+###### 31-0 PDO
+
+- Port Data Output
+
+- Register bits for unbonded pins return an undefined value when read.
+
+- 0b - Logic level 0 is driven on pin, provided pin is configured for general-purpose output.
+
+- 1b - Logic level 1 is driven on pin, provided pin is configured for general-purpose output.
+
+#### 13.3.1.3 Port Set Output Register (PSOR)
+
+##### 13.3.1.3.1 Offset
+
+|Register|Offset|
+|-|-|
+|PSOR|4h|
+
+##### 13.3.1.3.2 Function
+
+- This register configures whether to set the fields of the PDOR.
+
+##### 13.3.1.3.3 Diagram
+
+![figure-13-2](images/figure-13-2.png)
+
+##### 13.3.1.3.4 Fields
+
+###### 31-0 PTSO
+
+- Port Set Output
+
+- Writing to this register updates the contents of the corresponding bit in the PDOR as follows:
+
+    - 0b - Corresponding bit in PDORn does not change.
+
+    - 1b - Corresponding bit in PDORn is set to logic 1.
+
+#### 13.3.1.4 Port Clear Output Register (PCOR)
+
+##### 13.3.1.4.1 Offset
+
+|Register|Offset|
+|-|-|
+|PCOR|8h|
+
+##### 13.3.1.4.2 Function
+
+- This register configures whether to clear the fields of PDOR.
+
+##### 13.3.1.4.3 Diagram
+
+![figure-13-3](images/figure-13-3.png)
+
+##### 13.3.1.4.4 Field
+
+###### 31-0 PTCO
+
+- Port Clear Output
+
+- Writing to this register updates the contents of the corresponding bit in the Port Data Output Register (PDOR) as follows:
+
+    - 0b - Corresponding bit in PDORn does not change.
+
+    - 1b - Corresponding bit in PDORn is cleared to logic 0.
+
+#### 13.3.1.5 Port Toggle Output Register (PTOR)
+
+##### 13.3.1.5.1 Offset
+
+|Register|Offset|
+|-|-|
+|PTOR|Ch|
+
+##### 13.3.1.5.2 Function
+
+- This register toggles the logic levels that are driven on each general-purpose output pin.
+
+##### 13.3.1.5.3 Diagram
+
+> ![figure-13-4](images/figure-13-4.png)
+
+##### 13.3.1.5.4 Fields
+
+###### 31-0 PTTO
+
+- Port Toggle Output
+
+- Writing to this register updates the contents of the corresponding bit in the PDOR as follows:
+
+    - 0b - Corresponding bit in PDORn does not change.
+
+    - 1b - Corresponding bit in PDORn is set to the inverse of its existing logic state.
+
+#### 13.3.1.6 Port Data Input Register (PDIR)
+
+##### 13.3.1.6.1 Offset
+
+|Register|Offset|
+|-|-|
+|PDIR|10h|
+
+##### 13.3.1.6.2 Function
+
+- This register captures the logic levels that are driven into each general-purpose input pin.
+
+> ##### NOTE
+>
+> - Do not modify pin configuration registers associated with pins not available in your selected package.
+>
+> - All unbonded pins not available in your package will default to DISABLE state for lowest power consumption.
+
+##### 13.3.1.6.3 Diagram
+
+![figure-13-5](images/figure-13-5.png)
+
+##### 13.3.1.6.4 Fields
+
+###### 31-0 PDI
+
+- Port Input Data
+
+- Reads 0 at the unimplemented pins for a particular device.
+
+- Pins that are not configured for a digital function read 0.
+
+- If the Port Control and Interrupt module is disabled, then the corresponding bit in PDIR does not update.
+
+- 0b - Pin logic level is logic 0, or is not configured for use by digital function.
+
+- 1b - Pin logic level is logic 1.
+
+##### 13.3.1.5.1 Offset
 
 #### 13.3.1.7 Port Data Direction Register (PDDR)
 
@@ -184,7 +348,7 @@
 |-|-|
 |PDDR|14h|
 
-##### 13.3.1.7.1 Function
+##### 13.3.1.7.2 Function
 
 - The PDDR configures the individual port pins for input or output.
 
@@ -192,7 +356,7 @@
 
 ![figure-13-1](images/figure-13-1.png)
 
-##### Fields
+##### 13.3.1.7.4 Fields
 
 ###### 31-0 PDD
 
