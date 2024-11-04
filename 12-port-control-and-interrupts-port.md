@@ -93,3 +93,177 @@
 5. Configure the peripheral pins mux and features in the Port Control and Interrupts register (PORTx_PCRn).
 
 6. Start communication
+
+## 12.2 Introduction
+
+### 12.2.1 Overview
+
+- The Port Control and Interrupt (PORT) module provides support for port control, digital filtering, and external interrupt functions.
+
+<br>
+
+- Most functions can be configured independently for each pin in the 32-bit port and affect the pin regardless of its pin muxing state.
+
+<br>
+
+- There is one instance of the PORT module for each port. Not all pins within each port are
+implemented on a specific device.
+
+### 12.2.2 Features
+
+- The PORT module has the following features:
+
+    - Pin interrupt
+
+        - Interrupt flag and enable registers for each pin
+
+        - Support for edge sensitive (rising, falling, both) or level sensitive (low, high) configured per pin
+
+        - Support for interrupt or DMA request configured per pin 
+
+        - Asynchronous wake-up in low-power modes
+
+        - Pin interrupt is functional in all digital pin muxing modes
+
+    - Digital input filter
+
+        - Digital input filter for each pin, usable by any digital peripheral muxed onto the pin
+
+        - Individual enable or bypass control field per pin
+
+        - Selectable clock source for digital input filter with a five bit resolution on filter size
+
+        - Functional in all digital pin multiplexing modes
+
+    - Port control
+
+        - Individual pull control fields with pullup, pulldown, and pull-disable support
+
+        - Individual drive strength field supporting high and low drive strength
+
+        - Individual input passive filter field supporting enable and disable of the individual input passive filter
+
+        - Individual mux control field supporting analog or pin disabled, GPIO, and up to six chip-specific digital functions
+
+        - Pad configuration fields are functional in all digital pin muxing modes.
+
+### 12.2.3 Modes of operation
+
+#### 12.2.3.1 Run mode
+
+- In Run mode, the PORT operates normally.
+
+#### 12.2.3.2 Wait mode
+
+- In Wait mode, PORT continues to operate normally and may be configured to exit the Low-Power mode if an enabled interrupt is detected.
+
+- DMA requests are still generated during the Wait mode, but do not cause an exit from the Low-Power mode.
+
+#### 12.2.3.3 Stop mode
+
+- In Stop mode, the PORT can be configured to exit the Low-Power mode via an asynchronous wake-up signal if an enabled interrupt is detected.
+
+<br>
+
+- In Stop mode, the digital input filters are bypassed unless they are configured to run from the LPO clock source
+
+#### 12.2.3.4 Debug mode
+
+- In Debug mode, PORT operates normally.
+
+## 12.3 External signal description
+
+- The table found here describes the PORT external signal.
+
+> ##### Table 12-2. Signal properties
+
+|Name|Function|I/O|Reset|Pull|
+|-|-|-|-|-|
+|PORTx[31:0]|External interrupt|I/O|0|-|
+
+> ##### Note
+>
+> - Not all pins within each port are implemented on each device.
+
+## 12.4 Detailed signal description
+
+- The table found here contains the detailed signal description for the PORT interface.
+
+> ##### Table 12-3. PORT interface -- detailed signal description
+>
+> - PORTx[31:0]
+>
+>   - External interrupt
+>
+>   - State meaning
+>
+>       - Asserted -- pin is logic 1.
+>
+>       - Negated -- pin is logic 0.
+>
+>   - Timing
+>
+>       - Assertion -- may occur at any time and can assert asynchronously to the system clock.
+>
+>       - Negation -- may occur at any time and can assert asynchronously to the system clock.
+
+## 12.5 Memory map and register definition
+
+- Any read or write access to the PORT memory space that is outside the valid memory map results in a bus error.
+
+- All register accesses complete with zero wait states.
+
+### PORT memory map
+
+|Address offset (hex)|Register name|Width (in bits)|Access|Reset Value|Section|
+|-|-|-|-|-|-|
+|0|Pin Control Register n (PORT_PCR0)|32|R_W|See section|12.5.1|
+
+### 12.5.1 Pin Control Register n (PORT_PCRn)
+
+> ##### Note
+>
+> - See the GPIO Configuration section for details on the available functions for each pin
+>
+> <br>
+>
+> - Do not modify pin configuration registers associated with pins that are not available in a reduced-pin package offering.
+>
+> - Unbonded pins not available in a package are disabled by default to prevent them from consuming power.
+
+- Adress: 0h base + 0h offset + (4d * i), where i = 0d to 31d
+
+![figure-12-1](images/figure-12-1.png)
+
+- Notes:
+
+    - MUX, DSE, PFE, PE, PS fields: Varies by port. See Signal Multiplexing and Signal Descriptions chapter for reset values per port.
+
+#### PORT_PCRn field descriptions
+
+##### 10-8 MUX
+
+- Pin Mux Control
+
+- Not all pins support all pin muxing slots.
+
+    - Unimplemented pin muxing slots are reserved and may result in configuring the pin for a different pin muxing slot.
+
+- The corresponding pin is configured in the following pin muxing slot as follows:
+
+    - 000 Pin disabled (Alternative 0) (analog).
+
+    - 001 Alternative 1 (GPIO).
+
+    - 010 Alternative 2 (chip-specific).
+
+    - 011 Alternative 3 (chip-specific).
+
+    - 100 Alternative 4 (chip-specific).
+
+    - 101 Alternative 5 (chip-specific).
+
+    - 110 Alternative 6 (chip-specific).
+
+    - 111 Alternative 7 (chip-specific).
+
