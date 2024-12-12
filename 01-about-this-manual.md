@@ -59,6 +59,36 @@
 > ##### Figure 1-4. Register figure conventions
 >
 > ![figure-01-4](images/figure-01-4.png)
+>
+> - Read/write
+> 
+> - Read-only
+> 
+> - Write-only
+> 
+> - Write-only reads zero
+> 
+> - Write-only reads one
+> 
+> - Write-only reads undefined
+> 
+> - Read-only writes zero
+> 
+> - Read-only writes one
+> 
+> - Read-only writes undefined
+> 
+> - Write one to clear
+> 
+> - Reserved, unimplemented
+> 
+> - Write-only one
+> 
+> - Write-only zero
+> 
+> - Read-only one
+> 
+> - Read-only zero
 
 ## 1.5 Conventions
 

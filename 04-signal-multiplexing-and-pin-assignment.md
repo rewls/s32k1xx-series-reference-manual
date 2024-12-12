@@ -26,7 +26,7 @@
 >
 > ![figure-04-1](images/figure-04-1.png)
 
-## 4.d Pad description
+## 4.3 Pad description
 
 - Following figure shows the basic representation of a GPIO Pad.
 
