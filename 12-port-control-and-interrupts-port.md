@@ -4,7 +4,7 @@
 
 - Not all pin control settings mentioned in PORT_PCRn register are configurable for all pins.
 
-- Refer 'Bits Configurable' field in 'IO Signal Table' tab of IS Signal Description Input Multiplexing sheet(s) attached to the Reference Manual.
+- Refer 'Bits Configurable' field in 'IO Signal Table' tab of IO Signal Description Input Multiplexing sheet(s) attached to the Reference Manual.
 
 - The bits apart from 'Bit Configurable' fields are reserved and should not be varied from the reset values.
 
@@ -70,7 +70,7 @@
 
 - For example, in order to write to the PORT register of PTC3 (PTxn), the corresponding mapped register is PORTC_PCR3 (PORTx_PCRn):
 
-    - To find PORTC base address, look up the 'Start address' of "Port C" in "Peripheral Memory Map" tab in the attached S32K1xx_Memory_Map.xls.
+    - To find PORTC base address, look up the 'Start address' of "Port C" in ["Peripheral Memory Map" tab in the attached S32K1xx_Memory_Map.xls](https://github.com/rewls/s32k1xx-series-reference-manual/blob/main/s32k1xx-memory-map.md#peripheral-memory-map).
 
         - This is referred henceforth as PORTC_Base_address.
 
@@ -218,7 +218,7 @@ implemented on a specific device.
 |Address offset (hex)|Register name|Width (in bits)|Access|Reset Value|Section|
 |-|-|-|-|-|-|
 |0|Pin Control Register n (PORT_PCR0)|32|R_W|See section|12.5.1|
-|30|Pin Control Register n (PORT_PCR0)|32|R_W|See section|12.5.1|
+|30|Pin Control Register n (PORT_PCR12)|32|R_W|See section|12.5.1|
 
 ### 12.5.1 Pin Control Register n (PORT_PCRn)
 

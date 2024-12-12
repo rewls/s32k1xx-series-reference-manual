@@ -8,7 +8,8 @@
 
 |Peripheral description|Peripheral instance|Size (KB)|Start address (hex)|End address (hex)|S32K144|
 |-|-|-|-|-|-|
-|Peripheral bridge (AIPS-Lite)|AIPS Lite|4|40000000|40000FFF|x|
+|Port A multiplexing control|Port A|4|40049000|40049FFF|x|
+|Port B multiplexing control|Port B|4|4004A000|4004AFFF|x|
 |Port C multiplexing control|Port C|4|4004B000|4004BFFF|x|
 |Port D multiplexing control|Port D|4|4004C000|4004CFFF|x|
 |GPIO controller|GPIO|4|400FF000|400FFFFF|x|
