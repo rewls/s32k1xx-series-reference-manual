@@ -268,3 +268,22 @@ implemented on a specific device.
 
     - 111 Alternative 7 (chip-specific).
 
+##### 1 PE
+
+- Pull Enable
+
+- Pull configuration is valid in all digital pin muxing modes.
+
+- 0 Internal pullup or pulldown resistor is not enabled on the corresponding pin.
+
+- 1 Internal pullup or pulldown resistor is enabled on the corresponding pin, if the pin is configured as a digital input.
+
+##### 0 PS
+
+- Pull Select
+
+- Pull configuration is valid in all digital pin muxing modes.
+
+- 0 Internal pulldown resistor is enabled on the corresponding pin, if the corresponding PE field is set.
+
+- 1 Internal pullup resistor is enabled on the corresponding pin, if the corresponding PE field is set.
