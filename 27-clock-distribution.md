@@ -26,6 +26,16 @@
 
 - Clock selection for most modules is controlled by the PCC module.
 
+## 27.3 Clock definitions
+
+- The following table describes clocks shown in Figure 27-1 and other sections of this document.
+
+> ##### Table 27-1. Clock descriptions
+>
+> |Clock name|Related clock selector|Related clock divider|Description|
+> |-|-|-|-|
+> |SOSCDIV2_CLK||SCG_SOSCDIV[SOSCDIV2] (÷ 1, 2, 4, 8, 16, 32, 64, or output disabled)|Divided SOSC_CLK<br>This should be configured to 40 MHz or less in RUN/HSRUN mode.|
+
 ## 27.6 Module clocks
 
 - The following table summarizes the clocks that can be used by each of the modules.
