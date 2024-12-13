@@ -88,6 +88,59 @@
 |-|-|-|-|-|
 |12Ch|PCC PORTC Register (PCC_PORTC)|32|RW|8000_000h|
 |130h|PCC PORTD Register (PCC_PORTD)|32|RW|8000_000h|
+|ECh|PCC ADC0 Register (PCC_ADC0)|32|RW|8000_0000h|
+
+### 29.6.19 PCC ADC0 Register (PCC_ADC0)
+
+#### 29.6.19.1 Offset
+
+|Register|Offset|
+|-|-|
+|PCC_ADC0|ECh|
+
+#### 29.6.19.2 Function
+
+- This register is for the ADC0 module.
+
+#### 29.6.19.3 Diagram
+
+![29-6-19-3](images/29-6-19-3.png)
+
+#### 29.6.19.4 Fields
+
+##### 30 CGC
+
+- Clock Gate Control
+
+- This read/write bit enables the interface clock for the peripheral, allowing access to the module's registers.
+
+- It also controls whether the clock selection and divider options can be modified.
+
+- 0b - Clock disabled. The current clock selection and divider options are not locked and can be modified.
+
+- 1b - Clock enabled. The current clock selection and divider options are locked and cannot be modified.
+
+##### 26-24 PCS
+
+- Peripheral Clock Source Select
+
+- This read/write bit field is used for peripherals that support various clock selections.  This field can be written only when the clock is disabled (CGC = 0).
+
+- 000b - Clock is off.
+
+- 001b - Clock option 1
+
+- 010b - Clock option 2
+
+- 011b - Clock option 3
+
+- 100b - Clock option 4
+
+- 101b - Clock option 5
+
+- 110b - Clock option 6
+
+- 111b - Clock option 7
 
 ### 29.6.24 PCC PORTC Register (PCC_PORTC)
 
